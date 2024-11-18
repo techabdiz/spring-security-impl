@@ -1,0 +1,21 @@
+services:
+
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+        POSTGRES_PASSWORD: quarkus-api
+        POSTGRES_USER: quarkus-api
+    volumes:
+        - data_volume:/var/lib/postgresql/data
+    ports:
+        - 5432:5432
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8888:8080
+
+volumes:
+    data_volume:

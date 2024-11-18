@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: security-play
+    datasource:
+        url: jdbc:postgresql://localhost:5432/security-play
+        driverClassName: org.postgresql.Driver
+        username: quarkus-api
+        password: quarkus-api
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true
