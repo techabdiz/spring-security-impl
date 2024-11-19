@@ -1,6 +1,8 @@
 package com.deaspider.services;
 
 import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import com.deaspider.dto.UserDTO;
 import com.deaspider.exceptions.DuplicateResourceCreationException;
@@ -20,8 +22,10 @@ public class UserService {
     private UserRepo repo;
 
     public User getByUsername(String username){ 
-        return repo.findByUsername(username)
+        User user = repo.findByUsername(username)
             .orElseThrow(()-> new UserNotFoundException("user not found with username: " + username));
+        Hibernate.initialize(user.getRoles());
+        return user;
     }
 
     public User save(UserDTO dto) { 

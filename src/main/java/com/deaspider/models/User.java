@@ -3,6 +3,7 @@ package com.deaspider.models;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -34,10 +35,10 @@ public class User extends BaseEntity {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Token> token;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="t_user_roles", 
         joinColumns = @JoinColumn(name="user_id"), 
         inverseJoinColumns = @JoinColumn(name="role_id"))
